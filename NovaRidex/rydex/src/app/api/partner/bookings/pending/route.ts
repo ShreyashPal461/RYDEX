@@ -1,8 +1,8 @@
 import { auth } from "@/auth";
 import connectDb from "@/lib/db";
 import Booking from "@/models/booking.model";
+import User from "@/models/user.model";
 import { NextResponse } from "next/server";
-
 
 export async function GET() {
   try {
@@ -11,21 +11,23 @@ export async function GET() {
     /* ===== AUTH CHECK ===== */
     const session = await auth();
 
-    if (!session || !session.user) {
+    if (!session || !session.user || !session.user.email) {
       return NextResponse.json(
         { message: "Unauthorized" },
         { status: 401 }
       );
     }
 
-    if (session.user.role !== "vendor") {
+    // Single source of truth check in DB to avoid Next-Auth cookie/JWT role lag
+    const dbUser = await User.findOne({ email: session.user.email });
+    if (!dbUser || dbUser.role !== "vendor") {
       return NextResponse.json(
         { message: "Forbidden" },
         { status: 403 }
       );
     }
 
-    const vendorId = session.user.id;
+    const vendorId = dbUser._id;
 
     /* ===== FETCH PENDING BOOKINGS ===== */
     const bookings = await Booking.find({
