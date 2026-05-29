@@ -33,6 +33,12 @@ app.post("/emit", async (req, res) => {
       io.to(user.socketId).emit(event, data);
     }
 
+    // Also broadcast to the booking's socket room for redundant reliability
+    const bookingId = data?.bookingId || data?._id;
+    if (bookingId) {
+      io.to(`booking-${bookingId}`).emit(event, data);
+    }
+
     res.json({ success: true });
   } catch (error) {
     res.status(500).json({ success: false });

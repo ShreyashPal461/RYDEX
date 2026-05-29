@@ -87,8 +87,14 @@ export default function RidePage() {
     try {
       setLoading(true);
       const res  = await fetch(`/api/booking/${id}`);
-      if (!res.ok) throw new Error("Failed to fetch booking");
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.message || "Failed to fetch booking");
+      }
       const data = await res.json();
+      if (!data) {
+        throw new Error("Booking not found");
+      }
       setBooking(data);
       setPickupPos([data.pickupLocation.coordinates[1], data.pickupLocation.coordinates[0]]);
       setDropPos  ([data.dropLocation.coordinates[1],   data.dropLocation.coordinates[0]]);

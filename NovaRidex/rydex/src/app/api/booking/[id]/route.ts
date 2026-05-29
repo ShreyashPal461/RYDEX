@@ -1,17 +1,36 @@
 import connectDb from "@/lib/db";
 import Booking from "@/models/booking.model";
-import axios from "axios";
 import { NextResponse } from "next/server";
-
+import mongoose from "mongoose";
 
 export async function GET(
   req: Request,
-   context : { params: Promise<{ id: string }> }
+  context : { params: Promise<{ id: string }> }
 ) {
-  await connectDb();
- const id=(await context.params).id
-  const booking = await Booking.findById(id).populate("driver vehicle")
+  try {
+    await connectDb();
+    const id = (await context.params).id;
 
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json(
+        { message: "Invalid booking ID" },
+        { status: 400 }
+      );
+    }
 
-  return NextResponse.json(booking);
+    const booking = await Booking.findById(id).populate("driver vehicle");
+    if (!booking) {
+      return NextResponse.json(
+        { message: "Booking not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(booking);
+  } catch (error: any) {
+    return NextResponse.json(
+      { message: error.message || "Failed to fetch booking" },
+      { status: 500 }
+    );
+  }
 }
