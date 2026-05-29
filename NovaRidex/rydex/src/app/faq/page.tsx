@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
+import { HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
@@ -54,26 +54,26 @@ export default function FAQPage() {
   const filtered = activeCat === "All" ? FAQS : FAQS.filter((f) => f.cat === activeCat);
 
   return (
-    <div className="w-full min-h-screen bg-zinc-950 text-white selection:bg-white selection:text-black">
+    <div className="w-full min-h-screen bg-white text-zinc-900 selection:bg-zinc-950 selection:text-white">
       <Nav />
 
       {/* Header */}
       <section className="relative pt-32 pb-12 px-6 overflow-hidden text-center space-y-4">
-        <div className="absolute inset-0 pointer-events-none z-0 opacity-20">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[100px]" />
+        <div className="absolute inset-0 pointer-events-none z-0 opacity-30">
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-indigo-500/5 rounded-full blur-[100px]" />
         </div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-semibold tracking-wider text-indigo-400 uppercase"
+          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-xs font-semibold tracking-wider text-indigo-600 uppercase"
         >
           <HelpCircle size={12} /> Help Center
         </motion.div>
 
-        <h1 className="text-3xl sm:text-5xl font-black tracking-tight">Frequently Asked Questions</h1>
-        <p className="text-zinc-500 text-sm max-w-md mx-auto">Have questions about RYDEX? Find quick answers, tutorials, and guidelines right here.</p>
+        <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-zinc-900">Frequently Asked Questions</h1>
+        <p className="text-zinc-500 text-sm max-w-md mx-auto font-medium">Have questions about RYDEX? Find quick answers, tutorials, and guidelines right here.</p>
       </section>
 
       {/* Categories filter */}
@@ -87,8 +87,8 @@ export default function FAQPage() {
             }}
             className={`px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition border ${
               activeCat === cat
-                ? "bg-white text-black border-white shadow-lg"
-                : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white"
+                ? "bg-zinc-950 text-white border-zinc-950 shadow-lg shadow-black/10"
+                : "bg-white border-zinc-200 text-zinc-500 hover:text-zinc-900"
             }`}
           >
             {cat}
@@ -103,14 +103,14 @@ export default function FAQPage() {
           return (
             <div
               key={index}
-              className="bg-zinc-900/40 border border-zinc-900 rounded-2xl overflow-hidden hover:border-zinc-800 transition"
+              className="bg-white border border-zinc-200/80 rounded-2xl overflow-hidden hover:border-zinc-300 transition shadow-[0_4px_20px_rgba(0,0,0,0.02)]"
             >
               <button
                 onClick={() => setActiveIdx(open ? null : index)}
                 className="w-full px-6 py-5 flex items-center justify-between text-left gap-4"
               >
-                <span className="font-bold text-sm sm:text-base text-zinc-100">{item.q}</span>
-                <span className="text-zinc-500 flex-shrink-0">
+                <span className="font-bold text-sm sm:text-base text-zinc-800">{item.q}</span>
+                <span className="text-zinc-400 flex-shrink-0">
                   {open ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
                 </span>
               </button>
@@ -123,7 +123,7 @@ export default function FAQPage() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.25, ease: "easeOut" }}
                   >
-                    <div className="px-6 pb-6 text-zinc-400 text-xs sm:text-sm leading-relaxed border-t border-zinc-900/50 pt-4">
+                    <div className="px-6 pb-6 text-zinc-500 text-xs sm:text-sm leading-relaxed border-t border-zinc-100 pt-4 font-medium">
                       {item.a}
                     </div>
                   </motion.div>
