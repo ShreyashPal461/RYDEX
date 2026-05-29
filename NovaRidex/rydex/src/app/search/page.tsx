@@ -2,7 +2,7 @@
 
 import { useSearchParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import dynamic from "next/dynamic";
 import {
   ArrowLeft, MapPin, Navigation,
@@ -21,7 +21,7 @@ const VEHICLE_META: any = {
   truck:   { label: "Truck",   Icon: Truck },
 };
 
-export default function SearchPage() {
+function SearchContent() {
   const params = useSearchParams();
   const router = useRouter();
 
@@ -257,5 +257,20 @@ export default function SearchPage() {
         </div>
       </motion.div>
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-zinc-100 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-10 h-10 rounded-full border-4 border-zinc-300 border-t-zinc-900 animate-spin" />
+          <span className="font-bold text-zinc-500 text-sm">Searching Vehicles...</span>
+        </div>
+      </div>
+    }>
+      <SearchContent />
+    </Suspense>
   );
 }
