@@ -60,14 +60,14 @@ export default function FAQPage() {
       {/* Header */}
       <section className="relative pt-32 pb-12 px-6 overflow-hidden text-center space-y-4">
         <div className="absolute inset-0 pointer-events-none z-0 opacity-30">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-indigo-500/5 rounded-full blur-[100px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-zinc-500/5 rounded-full blur-[100px]" />
         </div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-xs font-semibold tracking-wider text-indigo-600 uppercase"
+          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-xs font-semibold tracking-wider text-zinc-900 uppercase"
         >
           <HelpCircle size={12} /> Help Center
         </motion.div>

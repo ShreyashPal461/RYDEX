@@ -30,14 +30,14 @@ export default function ContactPage() {
       {/* Header */}
       <section className="relative pt-32 pb-12 px-6 overflow-hidden text-center space-y-4">
         <div className="absolute inset-0 pointer-events-none z-0 opacity-30">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[100px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-zinc-500/5 rounded-full blur-[100px]" />
         </div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-xs font-semibold tracking-wider text-purple-600 uppercase"
+          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-xs font-semibold tracking-wider text-zinc-900 uppercase"
         >
           <MessageSquare size={12} /> Contact Us
         </motion.div>
@@ -57,7 +57,7 @@ export default function ContactPage() {
             <div className="space-y-4">
               {/* Phone */}
               <div className="flex gap-4 items-start">
-                <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center flex-shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-zinc-100 text-zinc-900 flex items-center justify-center flex-shrink-0">
                   <Phone size={16} />
                 </div>
                 <div>
@@ -69,7 +69,7 @@ export default function ContactPage() {
 
               {/* Email */}
               <div className="flex gap-4 items-start">
-                <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-zinc-100 text-zinc-900 flex items-center justify-center flex-shrink-0">
                   <Mail size={16} />
                 </div>
                 <div>
@@ -81,7 +81,7 @@ export default function ContactPage() {
 
               {/* Address */}
               <div className="flex gap-4 items-start">
-                <div className="w-9 h-9 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center flex-shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-zinc-100 text-zinc-900 flex items-center justify-center flex-shrink-0">
                   <MapPin size={16} />
                 </div>
                 <div>
@@ -95,7 +95,7 @@ export default function ContactPage() {
 
           {/* Quick Help Status */}
           <div className="bg-zinc-50 border border-zinc-100 rounded-3xl p-6 flex gap-4 items-start shadow-[0_8px_30px_rgba(0,0,0,0.01)]">
-            <div className="w-10 h-10 bg-green-50 text-green-600 border border-green-100 rounded-xl flex items-center justify-center flex-shrink-0 animate-pulse">
+            <div className="w-10 h-10 bg-zinc-100 text-zinc-900 border border-zinc-200 rounded-xl flex items-center justify-center flex-shrink-0">
               <Clock size={18} />
             </div>
             <div>
@@ -118,7 +118,7 @@ export default function ContactPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="py-12 flex flex-col items-center justify-center text-center space-y-4"
               >
-                <div className="w-16 h-16 bg-green-50 text-green-600 rounded-full flex items-center justify-center border border-green-100">
+                <div className="w-16 h-16 bg-zinc-100 text-zinc-900 rounded-full flex items-center justify-center border border-zinc-200">
                   <Send size={24} />
                 </div>
                 <h4 className="text-lg font-bold text-zinc-800">Message Sent!</h4>
@@ -127,7 +127,7 @@ export default function ContactPage() {
                 </p>
                 <button
                   onClick={() => setSent(false)}
-                  className="text-xs font-bold text-purple-600 hover:text-purple-800 uppercase tracking-wider transition pt-4"
+                  className="text-xs font-bold text-zinc-900 hover:text-black uppercase tracking-wider transition pt-4"
                 >
                   Send another message
                 </button>
@@ -143,7 +143,7 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. John Doe"
-                      className="w-full bg-zinc-50 border border-zinc-200 focus:bg-white focus:border-purple-600 rounded-xl px-4 py-3 text-sm outline-none text-zinc-800 transition-all font-medium"
+                      className="w-full bg-zinc-50 border border-zinc-200 focus:bg-white focus:border-zinc-900 rounded-xl px-4 py-3 text-sm outline-none text-zinc-800 transition-all font-medium"
                     />
                   </div>
 
@@ -155,7 +155,7 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="e.g. john@example.com"
-                      className="w-full bg-zinc-50 border border-zinc-200 focus:bg-white focus:border-purple-600 rounded-xl px-4 py-3 text-sm outline-none text-zinc-800 transition-all font-medium"
+                      className="w-full bg-zinc-50 border border-zinc-200 focus:bg-white focus:border-zinc-900 rounded-xl px-4 py-3 text-sm outline-none text-zinc-800 transition-all font-medium"
                     />
                   </div>
                 </div>
@@ -168,7 +168,7 @@ export default function ContactPage() {
                     value={formData.msg}
                     onChange={(e) => setFormData({ ...formData, msg: e.target.value })}
                     placeholder="Describe your issue or question in detail..."
-                    className="w-full bg-zinc-50 border border-zinc-200 focus:bg-white focus:border-purple-600 rounded-xl px-4 py-3 text-sm outline-none text-zinc-800 transition-all resize-none font-medium"
+                    className="w-full bg-zinc-50 border border-zinc-200 focus:bg-white focus:border-zinc-900 rounded-xl px-4 py-3 text-sm outline-none text-zinc-800 transition-all resize-none font-medium"
                   />
                 </div>
 

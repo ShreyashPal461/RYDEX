@@ -12,17 +12,12 @@ export default function AboutPage() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none z-0 opacity-40">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[120px]" />
-          <div className="absolute bottom-10 left-10 w-[300px] h-[300px] bg-purple-500/5 rounded-full blur-[100px]" />
-        </div>
-
         <div className="relative max-w-4xl mx-auto text-center z-10 space-y-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-xs font-semibold tracking-wider text-indigo-600 uppercase"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-xs font-semibold tracking-wider text-zinc-900 uppercase"
           >
             <Sparkles size={12} /> Discover RYDEX
           </motion.div>
@@ -33,7 +28,7 @@ export default function AboutPage() {
             transition={{ delay: 0.1, duration: 0.5 }}
             className="text-4xl sm:text-6xl font-black tracking-tight text-zinc-900"
           >
-            Mobility Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">Everyone</span>
+            Mobility Built for Everyone
           </motion.h1>
 
           <motion.p
@@ -58,10 +53,10 @@ export default function AboutPage() {
           {/* Card 1: User */}
           <motion.div
             whileHover={{ y: -6 }}
-            className="bg-white border border-zinc-200 rounded-3xl p-8 flex flex-col justify-between hover:border-zinc-300 transition shadow-[0_8px_30px_rgba(0,0,0,0.04)] relative overflow-hidden"
+            className="bg-white border border-zinc-200 rounded-3xl p-8 flex flex-col justify-between hover:border-zinc-300 transition shadow-[0_8px_30px_rgba(0,0,0,0.02)] relative overflow-hidden"
           >
             <div className="space-y-6">
-              <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center">
+              <div className="w-12 h-12 bg-zinc-100 text-zinc-900 rounded-2xl flex items-center justify-center">
                 <User size={22} />
               </div>
               <div className="space-y-2">
@@ -71,7 +66,7 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="pt-8 flex items-center gap-2 text-xs font-bold text-indigo-600 tracking-wider uppercase">
+            <div className="pt-8 flex items-center gap-2 text-xs font-bold text-zinc-900 tracking-wider uppercase">
               Seamless Booking <ArrowRight size={13} />
             </div>
           </motion.div>
@@ -79,10 +74,10 @@ export default function AboutPage() {
           {/* Card 2: Partner */}
           <motion.div
             whileHover={{ y: -6 }}
-            className="bg-white border border-zinc-200 rounded-3xl p-8 flex flex-col justify-between hover:border-zinc-300 transition shadow-[0_8px_30px_rgba(0,0,0,0.04)] relative overflow-hidden"
+            className="bg-white border border-zinc-200 rounded-3xl p-8 flex flex-col justify-between hover:border-zinc-300 transition shadow-[0_8px_30px_rgba(0,0,0,0.02)] relative overflow-hidden"
           >
             <div className="space-y-6">
-              <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center">
+              <div className="w-12 h-12 bg-zinc-100 text-zinc-900 rounded-2xl flex items-center justify-center">
                 <Users size={22} />
               </div>
               <div className="space-y-2">
@@ -92,7 +87,7 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="pt-8 flex items-center gap-2 text-xs font-bold text-purple-600 tracking-wider uppercase">
+            <div className="pt-8 flex items-center gap-2 text-xs font-bold text-zinc-900 tracking-wider uppercase">
               Partner & Earn <ArrowRight size={13} />
             </div>
           </motion.div>
@@ -100,10 +95,10 @@ export default function AboutPage() {
           {/* Card 3: Admin */}
           <motion.div
             whileHover={{ y: -6 }}
-            className="bg-white border border-zinc-200 rounded-3xl p-8 flex flex-col justify-between hover:border-zinc-300 transition shadow-[0_8px_30px_rgba(0,0,0,0.04)] relative overflow-hidden"
+            className="bg-white border border-zinc-200 rounded-3xl p-8 flex flex-col justify-between hover:border-zinc-300 transition shadow-[0_8px_30px_rgba(0,0,0,0.02)] relative overflow-hidden"
           >
             <div className="space-y-6">
-              <div className="w-12 h-12 bg-pink-50 text-pink-600 rounded-2xl flex items-center justify-center">
+              <div className="w-12 h-12 bg-zinc-100 text-zinc-900 rounded-2xl flex items-center justify-center">
                 <Landmark size={22} />
               </div>
               <div className="space-y-2">
@@ -113,7 +108,7 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="pt-8 flex items-center gap-2 text-xs font-bold text-pink-600 tracking-wider uppercase">
+            <div className="pt-8 flex items-center gap-2 text-xs font-bold text-zinc-900 tracking-wider uppercase">
               Administrative Control <ArrowRight size={13} />
             </div>
           </motion.div>
@@ -130,7 +125,7 @@ export default function AboutPage() {
             { icon: <Zap size={20} />, title: "Dynamic Redundancies", desc: "Multi-layered fail-safe routes ensuring real-time dashboard data stays absolutely fresh." },
           ].map((feat, i) => (
             <div key={i} className="space-y-3">
-              <div className="w-10 h-10 bg-white rounded-xl border border-zinc-200 flex items-center justify-center text-zinc-700 shadow-sm">
+              <div className="w-10 h-10 bg-white rounded-xl border border-zinc-200 flex items-center justify-center text-zinc-900 shadow-sm">
                 {feat.icon}
               </div>
               <h4 className="font-bold text-sm text-zinc-800">{feat.title}</h4>

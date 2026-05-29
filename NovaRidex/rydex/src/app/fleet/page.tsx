@@ -13,8 +13,6 @@ type VehicleType = {
   baseFare: string;
   ratePerKm: string;
   icon: any;
-  highlight: string;
-  border: string;
 };
 
 const VEHICLES: VehicleType[] = [
@@ -26,8 +24,6 @@ const VEHICLES: VehicleType[] = [
     baseFare: "₹35",
     ratePerKm: "₹6 / km",
     icon: Bike,
-    highlight: "text-blue-600 bg-blue-50",
-    border: "hover:border-blue-500/30",
   },
   {
     type: "Sedan",
@@ -37,8 +33,6 @@ const VEHICLES: VehicleType[] = [
     baseFare: "₹65",
     ratePerKm: "₹12 / km",
     icon: Car,
-    highlight: "text-purple-600 bg-purple-50",
-    border: "hover:border-purple-500/30",
   },
   {
     type: "SUV",
@@ -48,8 +42,6 @@ const VEHICLES: VehicleType[] = [
     baseFare: "₹95",
     ratePerKm: "₹18 / km",
     icon: Car,
-    highlight: "text-pink-600 bg-pink-50",
-    border: "hover:border-pink-500/30",
   },
   {
     type: "Truck",
@@ -59,8 +51,6 @@ const VEHICLES: VehicleType[] = [
     baseFare: "₹199",
     ratePerKm: "₹24 / km",
     icon: Truck,
-    highlight: "text-amber-600 bg-amber-50",
-    border: "hover:border-amber-500/30",
   },
 ];
 
@@ -72,14 +62,14 @@ export default function FleetPage() {
       {/* Header */}
       <section className="relative pt-32 pb-12 px-6 overflow-hidden text-center space-y-4">
         <div className="absolute inset-0 pointer-events-none z-0 opacity-30">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-zinc-500/5 rounded-full blur-[100px]" />
         </div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-xs font-semibold tracking-wider text-blue-600 uppercase"
+          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-xs font-semibold tracking-wider text-zinc-900 uppercase"
         >
           <Sparkles size={12} /> RYDEX Fleet
         </motion.div>
@@ -96,12 +86,12 @@ export default function FleetPage() {
             <motion.div
               key={vehicle.type}
               whileHover={{ y: -6 }}
-              className={`bg-white border border-zinc-200 rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 shadow-md ${vehicle.border}`}
+              className="bg-white border border-zinc-200 rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 shadow-md hover:border-zinc-400"
             >
               <div className="space-y-6">
                 {/* Header Row */}
                 <div className="flex items-center justify-between">
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${vehicle.highlight}`}>
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-zinc-100 text-zinc-900">
                     <Icon size={22} />
                   </div>
                   <span className="text-[10px] font-bold tracking-[0.2em] text-zinc-400 uppercase">
