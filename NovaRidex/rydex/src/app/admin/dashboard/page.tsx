@@ -55,9 +55,10 @@ export default function AdminDashboard() {
 
   async function loadAll() {
     try {
+      const t = Date.now();
       const [dashboardRes, kycRes] = await Promise.all([
-        axios.get("/api/admin/dashboard"),
-        axios.get("/api/admin/vendors/video-kyc/pending"),
+        axios.get(`/api/admin/dashboard?t=${t}`),
+        axios.get(`/api/admin/vendors/video-kyc/pending?t=${t}`),
       ]);
 
       setStats(dashboardRes.data.stats);

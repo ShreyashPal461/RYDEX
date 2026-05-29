@@ -113,7 +113,7 @@ export async function GET() {
        RESPONSE
     ================================ */
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       success: true,
       stats: {
         totalVendors,
@@ -124,6 +124,9 @@ export async function GET() {
       pendingVendors,
       pendingVehicles,
     });
+    
+    response.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+    return response;
   } catch (error) {
     console.error("ADMIN DASHBOARD ERROR:", error);
     return NextResponse.json(

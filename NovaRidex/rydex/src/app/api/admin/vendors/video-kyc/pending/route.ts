@@ -13,5 +13,7 @@ export async function GET() {
     videoKycStatus: { $in: ["pending", "in_progress"]},
   });
 
-  return NextResponse.json(vendors);
+  const response = NextResponse.json(vendors);
+  response.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+  return response;
 }
