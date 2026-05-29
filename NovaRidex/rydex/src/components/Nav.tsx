@@ -21,7 +21,7 @@ import { signOut } from "next-auth/react";
 import { setUserData } from "@/redux/userSlice";
 import axios from "axios";
 
-const NAV_ITEMS = ["Home", "Bookings", "Fleet", "FAQ", "Contact"];
+const NAV_ITEMS = ["Home", "Bookings", "Fleet", "FAQ", "About", "Contact"];
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -130,7 +130,7 @@ export default function Nav() {
     }
 
     return NAV_ITEMS.map((item) => {
-      const href = `/${item.toLowerCase()}`;
+      const href = item === "Home" ? "/" : `/${item.toLowerCase()}`;
       const active = pathname === href;
       return (
         <Link
@@ -309,7 +309,7 @@ export default function Nav() {
             NAV_ITEMS.map((item) => (
               <Link
                 key={item}
-                href={`/${item.toLowerCase()}`}
+                href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
                 className="px-6 py-4 text-gray-300 hover:bg-white/5"
                 onClick={() => setMenuOpen(false)}
               >
