@@ -7,6 +7,8 @@ import Vehicle from "@/models/vehicle.model";
 import VehicleDocument from "@/models/vehicleDocument.model";
 import PartnerBank from "@/models/partnerBank.model";
 
+export const dynamic = "force-dynamic";
+
 /* ================================
    GET → Single Vendor Full Review
 ================================ */

@@ -3,6 +3,8 @@ import { auth } from "@/auth";
 import connectDb from "@/lib/db";
 import Booking from "@/models/booking.model";
 
+export const dynamic = "force-dynamic";
+
 
 export async function GET() {
   try {

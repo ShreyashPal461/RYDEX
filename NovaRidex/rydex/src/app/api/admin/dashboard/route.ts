@@ -5,6 +5,8 @@ import connectDb from "@/lib/db";
 import User from "@/models/user.model";
 import Vehicle from "@/models/vehicle.model";
 
+export const dynamic = "force-dynamic";
+
 /* ================================
    GET → ADMIN DASHBOARD DATA
 ================================ */
