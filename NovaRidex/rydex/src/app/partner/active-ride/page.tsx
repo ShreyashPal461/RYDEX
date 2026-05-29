@@ -258,7 +258,7 @@ export default function DriverRidePage() {
         <p className="text-zinc-500 text-sm mb-8 max-w-xs">You don't have any active booking right now. Go online to start receiving ride requests.</p>
         <motion.button
           whileTap={{ scale: 0.97 }}
-          onClick={() => window.location.href = "/partner"}
+          onClick={() => window.location.href = "/"}
           className="bg-white text-zinc-900 px-8 py-4 rounded-2xl text-sm font-bold hover:bg-zinc-100 transition-colors"
         >
           Back to Dashboard
@@ -767,7 +767,7 @@ function CompletedScreen({ booking }: { booking: IBooking }) {
 
           <motion.button
             whileTap={{ scale: 0.97 }}
-            onClick={() => window.location.href = "/partner"}
+            onClick={() => window.location.href = "/"}
             className="w-full bg-white text-zinc-900 py-4 rounded-2xl text-sm font-bold hover:bg-zinc-100 transition-colors"
           >
             Back to Dashboard
@@ -848,7 +848,7 @@ function FailedScreen({ booking, status, cfg }: {
 
         <motion.button
           whileTap={{ scale: 0.97 }}
-          onClick={() => window.location.href = "/partner"}
+          onClick={() => window.location.href = "/"}
           className="w-full bg-white text-zinc-900 py-4 rounded-2xl text-sm font-bold hover:bg-zinc-100 transition-colors"
         >
           Back to Dashboard
