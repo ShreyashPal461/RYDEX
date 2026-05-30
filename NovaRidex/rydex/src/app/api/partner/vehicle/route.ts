@@ -60,6 +60,19 @@ export async function POST(req: NextRequest) {
     let vehicle = await Vehicle.findOne({ owner: user._id });
 
     if (vehicle) {
+      /* ===== DUPLICATE NUMBER CHECK (OTHER USERS) ===== */
+      const duplicate = await Vehicle.findOne({
+        number: vehicleNumber,
+        owner: { $ne: user._id }
+      });
+
+      if (duplicate) {
+        return NextResponse.json(
+          { message: "This number already registered" },
+          { status: 409 }
+        );
+      }
+
       /* ===== UPDATE MODE ===== */
       vehicle.type = type;
       vehicle.number = vehicleNumber;
@@ -82,7 +95,7 @@ export async function POST(req: NextRequest) {
 
     if (duplicate) {
       return NextResponse.json(
-        { message: "Vehicle already registered" },
+        { message: "This number already registered" },
         { status: 409 }
       );
     }
@@ -114,10 +127,13 @@ export async function POST(req: NextRequest) {
       created: true,
       nextStep: "/partner/onboard/documents",
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error("VEHICLE STEP ERROR:", error);
     return NextResponse.json(
-      { message: "Internal server error" },
+      { 
+        message: error?.message || "Internal server error",
+        error: error?.stack || String(error)
+      },
       { status: 500 }
     );
   }
