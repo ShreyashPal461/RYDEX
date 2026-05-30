@@ -141,10 +141,14 @@ export async function POST(req: NextRequest) {
       success: true,
       message: "Documents submitted successfully",
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error("POST DOCUMENT ERROR:", error);
     return NextResponse.json(
-      { message: "Document upload failed" },
+      { 
+        message: "Document upload failed",
+        error: error?.message || String(error),
+        stack: error?.stack || null
+      },
       { status: 500 }
     );
   }

@@ -83,9 +83,11 @@ export default function PartnerDocumentsPage() {
 
       router.push("/partner/onboard/bank");
     } catch (err: any) {
+      const serverError = err?.response?.data;
       setError(
-        err?.response?.data?.message ||
-          "Document upload failed"
+        serverError?.error 
+          ? `Document upload failed: ${serverError.error}` 
+          : (serverError?.message || "Document upload failed")
       );
     } finally {
       setLoading(false);
