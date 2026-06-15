@@ -166,12 +166,17 @@ const handleReject = async () => {
     setLoading(true);
 
     try {
+      const userId = userData?._id.toString()!;
+      const displayName = isAdmin
+        ? "Admin"
+        : `${userData?.name} (${userData?.email})`;
+
       const tokenRes = await fetch("/api/zego/token", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ roomId }),
+        body: JSON.stringify({ roomId, userId }),
       });
 
       const tokenData = await tokenRes.json();
@@ -180,12 +185,6 @@ const handleReject = async () => {
       }
 
       const { token, appID } = tokenData;
-
-      const displayName = isAdmin
-        ? "Admin"
-        : `${userData?.name} (${userData?.email})`;
-
-      const userId = userData?._id.toString()!;
 
       const kitToken =
         ZegoUIKitPrebuilt.generateKitTokenForProduction(

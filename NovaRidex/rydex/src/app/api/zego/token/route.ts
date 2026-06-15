@@ -49,7 +49,7 @@ export async function POST(req: Request) {
     );
   }
 
-  const { roomId } = await req.json();
+  const { roomId, userId } = await req.json();
 
   const appID = Number(process.env.ZEGO_APP_ID || process.env.NEXT_PUBLIC_ZEGO_APP_ID);
   const serverSecret = process.env.ZEGO_SERVER_SECRET || process.env.NEXT_PUBLIC_ZEGO_SERVER_SECRET;
@@ -68,22 +68,11 @@ export async function POST(req: Request) {
     );
   }
 
-  const payloadObject = {
-    room_id: roomId,
-    privilege: {
-      "1": 1, // Login Privilege: 1-allow, 0-forbid
-      "2": 1, // Publishing Privilege: 1-allow, 0-forbid
-    },
-    stream_id_list: null,
-  };
-  const payload = JSON.stringify(payloadObject);
-
   const token = generateToken04(
     appID,
-    session.user.id,
+    userId || session.user.id,
     serverSecret,
-    3600,
-    payload
+    3600
   );
 
   return NextResponse.json({
