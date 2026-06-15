@@ -51,8 +51,8 @@ export async function POST(req: Request) {
 
   const { roomId } = await req.json();
 
-  const appID = Number(process.env.ZEGO_APP_ID);
-  const serverSecret = process.env.ZEGO_SERVER_SECRET!;
+  const appID = Number(process.env.ZEGO_APP_ID || process.env.NEXT_PUBLIC_ZEGO_APP_ID);
+  const serverSecret = process.env.ZEGO_SERVER_SECRET || process.env.NEXT_PUBLIC_ZEGO_SERVER_SECRET;
 
   if (!roomId) {
     return NextResponse.json(
@@ -61,11 +61,29 @@ export async function POST(req: Request) {
     );
   }
 
+  if (!appID || !serverSecret) {
+    return NextResponse.json(
+      { message: "Zego configurations missing" },
+      { status: 500 }
+    );
+  }
+
+  const payloadObject = {
+    room_id: roomId,
+    privilege: {
+      "1": 1, // Login Privilege: 1-allow, 0-forbid
+      "2": 1, // Publishing Privilege: 1-allow, 0-forbid
+    },
+    stream_id_list: null,
+  };
+  const payload = JSON.stringify(payloadObject);
+
   const token = generateToken04(
     appID,
     session.user.id,
     serverSecret,
-    3600
+    3600,
+    payload
   );
 
   return NextResponse.json({

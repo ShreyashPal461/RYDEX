@@ -166,9 +166,20 @@ const handleReject = async () => {
     setLoading(true);
 
     try {
-      const appID = Number(process.env.NEXT_PUBLIC_ZEGO_APP_ID);
-      const serverSecret =
-        process.env.NEXT_PUBLIC_ZEGO_SERVER_SECRET;
+      const tokenRes = await fetch("/api/zego/token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ roomId }),
+      });
+
+      const tokenData = await tokenRes.json();
+      if (!tokenRes.ok) {
+        throw new Error(tokenData.message || "Failed to fetch Zego token");
+      }
+
+      const { token, appID } = tokenData;
 
       const displayName = isAdmin
         ? "Admin"
@@ -177,9 +188,9 @@ const handleReject = async () => {
       const userId = userData?._id.toString()!;
 
       const kitToken =
-        ZegoUIKitPrebuilt.generateKitTokenForTest(
+        ZegoUIKitPrebuilt.generateKitTokenForProduction(
           appID,
-          serverSecret!,
+          token,
           roomId,
           userId,
           displayName
@@ -197,8 +208,9 @@ const handleReject = async () => {
       });
 
       setJoined(true);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
+      alert(err.message || "Failed to establish secure call connection.");
       joinedRef.current = false;
     } finally {
       setLoading(false);
